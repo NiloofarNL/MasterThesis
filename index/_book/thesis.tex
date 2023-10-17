@@ -1,0 +1,617 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% McMaster Masters/Doctoral Thesis
+% LaTeX Template
+% Version 2.2 (11/23/15)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+% Then subsequently from http://www.overleaf.com
+%
+% Version 2.0 major modifications by:
+% Vel (vel@latextemplates.com)
+%
+% Original authors:
+% Steven Gunn  (http://users.ecs.soton.ac.uk/srg/softwaretools/document/templates/)
+% Sunil Patel (http://www.sunilpatel.co.uk/thesis-template/)
+%
+% Modified to McMaster format by Benjamin Furman (contact: https://www.xenben/com; Most up
+% to date template at https://github.com/benjaminfurman/McMaster_Thesis_Template,
+% occasionally updated on Overleaf template page)
+%
+% Modified for macdown by Antonio Paez; most up to date version at https://github.com/paezha/macdown
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+% DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[
+11pt, % The default document font size, options: 10pt, 11pt, 12pt
+oneside, % Two side (alternating margins) for binding by default, uncomment to switch to one side
+english, % other languages available
+singlespacing, % Single line spacing, alternatives: onehalfspacing or doublespacing
+%draft, % Uncomment to enable draft mode (no pictures, no links, overfull hboxes indicated)
+%nolistspacing, % If the document is onehalfspacing or doublespacing, uncomment this to set spacing in lists to single
+%liststotoc, % Uncomment to add the list of figures/tables/etc to the table of contents
+%toctotoc, % Uncomment to add the main table of contents to the table of contents
+]{macthesis} % The class file specifying the document structure
+
+%----------------------------------------------------------------------------------------
+% Import packages here
+%----------------------------------------------------------------------------------------
+\usepackage[utf8]{inputenc} % Required for inputting international characters
+\usepackage[T1]{fontenc} % Output font encoding for international characters
+\usepackage{lastpage} % count pages
+\usepackage{lmodern} % could change font type by calling a different package
+\usepackage{lscape} % for landscaping pages
+% New commands for landscape orientation
+\newcommand{\blandscape}{\begin{landscape}}
+\newcommand{\elandscape}{\end{landscape}}
+%
+\usepackage{siunitx} % for scientific units (micro-liter, etc)
+\setcounter{tocdepth}{2} % so that only section and sub sections appear in Table of Contents. Remove or set depth to 3 to include sub-sub-sections
+
+%----------------------------------------------------------------------------------------
+% Define a blank page
+%----------------------------------------------------------------------------------------
+\def\blankpage{%
+      \clearpage%
+      \thispagestyle{empty}%
+      \addtocounter{page}{-1}%
+      \null%
+      \clearpage}
+
+%----------------------------------------------------------------------------------------
+% Define a tight list
+%----------------------------------------------------------------------------------------
+\def\tightlist{}
+
+%----------------------------------------------------------------------------------------
+%	Highlight Code Chunks
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+% Handling Citations
+%----------------------------------------------------------------------------------------
+\usepackage[backend=biber, giveninits=true, doi=false, natbib=true, url=false, eprint=false, style=authoryear, sorting=nyt, maxcitenames=2, maxbibnames=99, uniquename=false, uniquelist=false, dashed=false]{biblatex} % can change the maxbibnames to cut long author lists to specified length followed by et al., currently set to 99.
+% package xurl wraps long url in the citations.
+\usepackage{xurl}
+\DeclareFieldFormat[article,inbook,incollection,inproceedings,patent,thesis,unpublished]{title}{#1\isdot} % removes quotes around title
+\renewbibmacro*{volume+number+eid}{%
+  \printfield{volume}%
+%  \setunit*{\adddot}% DELETED
+  \printfield{number}%
+  \setunit{\space}%
+  \printfield{eid}}
+\DeclareFieldFormat[article]{number}{\mkbibparens{#1}}
+%\renewcommand*{\newunitpunct}{\space} % remove period after date, but I like it.
+\renewbibmacro{in:}{\ifentrytype{article}{}{\printtext{\bibstring{in}\intitlepunct}}} % this remove the "In: Journal Name" from articles in the bibliography, which happens with the ynt
+\renewbibmacro*{note+pages}{%
+    \printfield{note}%
+    \setunit{,\space}% could add punctuation here for after volume
+    \printfield{pages}%
+    \newunit}
+\DefineBibliographyStrings{english}{% clears the pp from pages
+  page = {\ifbibliography{}{\adddot}},
+  pages = {\ifbibliography{}{\adddot}},
+}
+\DeclareNameAlias{sortname}{last-first}
+\renewcommand*{\nameyeardelim}{\addspace} % remove comma in text between name and date
+\addbibresource{Bibliography.bib} % The filename of the bibliography
+\usepackage[autostyle=true]{csquotes} % Required to generate language-dependent quotes in the bibliography
+
+% you'll have to play with the citation styles to resemble the standard in your field, or just leave them as is here.
+% or, if there is a bst file you like, just get rid of all this biblatex stuff and go back to bibtex.
+
+% This code is to fix cslreferences in new pandoc see: https://github.com/mpark/wg21/issues/54
+%%\newlength{\cslhangindent}
+%\setlength{\cslhangindent}{1.5em}
+%\newenvironment{CSLReferences}%
+%  {}%
+%  {\par}
+%
+% https://github.com/ismayc/thesisdown/issues/133
+% From {rticles}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+% for Pandoc 2.8 to 2.10.1
+\newenvironment{cslreferences}%
+  {}%
+  {\par}
+% For Pandoc 2.11+
+% As noted by @mirh [2] is needed instead of [3] for 2.12
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1 \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces\fi
+  % set entry spacing
+  \ifnum #2 > 0
+  \setlength{\parskip}{#2\baselineskip}
+  \fi
+ }%
+ {}
+\usepackage{calc} % for calculating minipage widths
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+
+%----------------------------------------------------------------------------------------
+% Collect all your header information from the chapters here, things like acronyms, custom commands, necessary packages, etc.
+%----------------------------------------------------------------------------------------
+\usepackage{parskip} %this will put spaces between paragraphs
+\setlength{\parindent}{15pt} % this will create and indent on all but the first paragraph of each section.
+% should maybe change to glossaries package
+\usepackage{acro}
+\DeclareAcronym{est}{
+	short = EST,
+	long  = expressed sequence tags
+}
+
+\DeclareAcronym{Xl}{
+	short = \textit{X.~laevis},
+	long  = \textit{Xenopus~laevis}
+}
+\DeclareAcronym{Xg}{
+	short = \textit{X.~gilli},
+	long  = \textit{Xenopus~gilli}
+}
+
+\usepackage{etoolbox}
+\preto\chapter{\acresetall} % resets acronyms for each chapter
+
+\usepackage{xspace} %helps spacing with custom commands.
+\newcommand{\oddname}{{\sc SoME goOfY LonG ThiNg With an AwkWarD NAme}\xspace}
+
+
+\usepackage{pgfplotstable} % a much better way to handle tables
+\pgfplotsset{compat=1.12}
+
+% \usepackage{float} % if you need to demand figure/table placement, then this will allow you to use [H], which demands a figure placement. Beware, making LaTeX do things it doesn't want may lead to oddities.
+
+
+%%%%
+% LINK COLORS
+% You can control the link colors at the end of the McMasterThesis.cls file. There is also a true/false option there to turn off all link colors.
+%%%%
+
+
+%----------------------------------------------------------------------------------------
+%	THESIS INFORMATION
+%----------------------------------------------------------------------------------------
+
+\title{Stress and Travel}
+%\thesistitle{Thesis Title} % Your thesis title, print it elsewhere with \ttitle
+\author{Niloofar Nalaee}
+%\author{John \textsc{Smith}} % Your name, print it elsewhere with \authorname
+\bdegree{B.Sc.}
+\mdegree{}
+%Previous degrees % print it elsewhere with \bdeg and \mdeg
+\date{}
+% The month and year that you submit your FINAL draft TO THE LIBRARY (May or December)
+\university{McMaster University}
+%\university{\href{http://www.mcmaster.ca/}{McMaster University}} % Your university's name and URL, print it elsewhere with \univname
+%\division{}
+\faculty{Faculty of Science} % Your faculty's name and URL, print it elsewhere with \facname
+\department{School of Earth, Environment and Society} % Your department's name and URL, print it elsewhere with \deptname
+\subject{Geography} % Your subject area, print it elsewhere with \subjectname
+%\group{\href{http://researchgroup.university.com}{Research Group Name}} % Your research group's name and URL, print it elsewhere with \groupname
+\supervisor{Antonio Paez}
+%\supervisor{Dr. Jane \textsc{Smith}} % Your supervisor's name, print it elsewhere with \supname
+\examiner{} % Your examiner's name, print it elsewhere with \examname
+\degree{M.Sc.}
+%\degree{Doctor of Philosophy} % Your degree name, print it elsewhere with \degreename
+\addresses{} % Your address, print it elsewhere with \addressname
+\keywords{} % Keywords for your thesis, print it elsewhere with \keywordnames
+
+
+% this sets up hyperlinks
+\hypersetup{pdftitle=\ttitle} % Set the PDF's title to your title
+\hypersetup{pdfauthor=\authorname} % Set the PDF's author to your name
+\hypersetup{pdfkeywords=\keywordnames} % Set the PDF's keywords to your keywords
+\begin{document}
+\sloppy
+
+\frontmatter % Use roman page numbering style (i, ii, iii, iv...) for the pre-content pages
+
+\pagestyle{plain} % Default to the plain heading style until the thesis style is called for the body content
+
+%----------------------------------------------------------------------------------------
+%	Half Title (lay title)
+%----------------------------------------------------------------------------------------
+%\begin{halftitle} % could not get this environment working
+%\vspace*{\fill}
+\vspace{6cm}
+\begin{center}
+\ttitle
+\end{center}
+%\vspace*{\fill}
+\pagenumbering{gobble} % leave this here, McMaster doesn't want this page numbered
+%\end{halftitle}
+\clearpage
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+\pagenumbering{gobble}
+\begin{center}
+
+\vfill
+\textsc{\Large \ttitle}\\[1 cm]
+
+By  \\[1 cm]
+{\authorname\, \bdeg }
+
+
+ \vfill
+{\large \textit{A Thesis Submitted to the School of Graduate Studies in the Partial Fulfillment of the Requirements for the Degree \degreename}}\\
+
+\vfill
+{\large \univname\, \copyright\, Copyright by \authorname\, \today}\\[4cm] % replace \today with the submission date
+
+\end{center}
+\clearpage
+
+
+
+
+%----------------------------------------------------------------------------------------
+%	Descriptive note numbered ii
+%----------------------------------------------------------------------------------------
+% Need to add below info
+\newpage
+\pagenumbering{roman} % leave to turn numbering back on
+\setcounter{page}{2} % leave here to make this page numbered ii, a Grad School requirement
+
+\noindent % stops indent on next line
+\univname \\
+\degreename\, (\the\year) \\
+Hamilton, Ontario (\deptname) \\[1.5cm]
+TITLE: \ttitle \\
+AUTHOR: \authorname\,  %list previous degrees
+(\univname)  \\
+SUPERVISOR: \supname\, \\
+NUMBER OF PAGES: \pageref{lastoffront}, \pageref{LastPage}  % put in iv and number
+
+\clearpage
+
+%----------------------------------------------------------------------------------------
+%	Lay abstract number iii
+%----------------------------------------------------------------------------------------
+% not actually included in most theses, though requested by the GSA
+% uncomment below lines if you want to include one
+\section*{Lay Abstract}
+  Nowadays commuting as a daily travel mostly beween work and home is considered as an inevitable part of modern lifestyle. This experience has been indicated to be a source of stress and anxiety as numerous studies have already revealed. Understanding commuting patterns and travel behavior is important for analyzing stress-related issues, consequenses and coping strategies. As (Koslowsky et al., 2013) has mentioned, this is also beneficial to have a perception of commuting patterns, mode of transportation, road congestion and so on for commuting network planning from scratch. Using the relevant stress commuting variables such as experienced stress and assigned importance to this stress can help to this end.
+  This research aimed at providing a comprehensive data package of travel behavior and other aspects of the urban commuting experience of respondents in Santiago, Chile. Each components of this data package serves different aspects for future research such as using demographic information in travel demand modeling, health-related information for improving health, well-being and safety in transportation planning, reasons and planning decisions information for origin-destination modeling, and so on.
+  The research also has been focused on an integrated list of variables choosen from demographic and health information sections of the data package. This list helps to identify how commuters interact with experiencing stress during their travels. This research also contributes to address commuting stress by identifying relevant variables, then figuring out the affected groups and analyzing their coping strategies.
+\clearpage
+
+
+%----------------------------------------------------------------------------------------
+%	ABSTRACT PAGE number iv
+%----------------------------------------------------------------------------------------
+
+\section*{\Huge Abstract}
+\addchaptertocentry{\abstractname}
+% Type your abstract here.
+Stress as a serious physical and mental health implications of commuting, has hardly been mentioned in schorlarly texts. Although stress issues have a major impact on economy, transportation planning, and demographics because of phyisical, emotional and behavioral consequences of commuting, it is not appropriately discussed yet (Koslowsky, Kluger, \& Reich, 2013). Regarding the fact that almost all commutes can be stressful (Legrain, Eluru, \& El-Geneidy, 2015), understanding the emotional states of individuals during their journeys and how they navigate and manage the negative feelings of commuting is of superior importance. As (Herrmann-Lunecke, Mora, \& Vejares, 2021) mentioned a negligible part of the Latin American, including Chile literature, has been centered around individuals emotions especially stress classified as a background emotion. Similarly, this research also has found out that studies into the travel behaviors and stress experiences of both motorized and active commuters in the global south, particularly in locations like Santiago, Chile, has been surprisingly scarce. This study seeks to bridge this gap in research, aiming to comprehensively grasp the impact of stress on commuters, the importance they attribute to these feelings, and the strategies they adopt to tackle this issue. To this end, a bivariate ordinal model was adopted, allowing for an analysis of stress factors and their interactions with key exploratory variables, including income, age, and choice of transportation mode. Interestingly, the results obtained from the context of Santiago, Chile, a region characterized by a predominance of middle and low-income populations, revealed intriguing patterns. It was evident that those most severely affected by commuting stress were individuals from the low-income groups who heavily relied on public transportation. In contrast with what they were suppposed to do, these individuals appeared to be less concerned about the stress they experienced, despite encountering higher stress levels, primarily due to the limited transportation options available to them (Tiznado-Aitken, Muñoz, \& Hurtubia, 2021).
+This research makes a two-fold contribution. First, it compiles an extensive array of data including socio-demographics, health metrics, feelings and emotions, built environment, and work commute-related details, all presented in a comprehensive data package format. Subsequently, the study delves into the health-oriented travel behaviors, identifying the various coping strategies employed by commuters.
+The implications of these findings extend to the domain of transportation system planning and urban development. By shedding light on the challenges caused by commuting stress and highlighting effective coping mechanisms, this research holds the potential to improve individuals' overall quality of life. This echoes findings from (Chatterjee et al., 2020) where it has been indicated that commuting experience can affect subjective wellbeing and individual satisfaction due to various experiences such as stres, mode of transport, unpredictability and so on.
+Furthermore, the gained insights can inform urban planning initiatives and facilitating commuting experience. Ultimately, the integration of these insights into policies and practices has the capacity to cultivate sustainable and resilient communities, which thrive even when facing the inevitable stresses associated with daily commuting.
+\clearpage
+
+%----------------------------------------------------------------------------------------
+%	ACKNOWLEDGEMENTS
+%----------------------------------------------------------------------------------------
+
+\clearpage
+
+%----------------------------------------------------------------------------------------
+%	LIST OF CONTENTS/FIGURES/TABLES PAGES
+%----------------------------------------------------------------------------------------
+
+\tableofcontents % Prints the main table of contents
+
+\listoffigures % Prints the list of figures
+
+\listoftables % Prints the list of tables
+
+%----------------------------------------------------------------------------------------
+%	ABBREVIATIONS
+%----------------------------------------------------------------------------------------
+% many theses don't use this section, as it will be declared at first use and again each chapter. Uncomment these four lines to activate if you want
+%\clearpage
+%\section*{\Huge Acronyms}
+%\addchaptertocentry{Acronyms}
+%\printacronyms[name] % name without an option stops the header
+
+%----------------------------------------------------------------------------------------
+%	DECLARATION PAGE
+%----------------------------------------------------------------------------------------
+
+
+
+%----------------------------------------------------------------------------------------
+% The following bit is just here to make sure we end up on a new page and get the total number of roman numeral
+\label{lastoffront}
+\clearpage
+% make sure this command is on the last of your frontmatter pages, i.e. only this command, a \clearpage then \mainmatter
+% should be fine without modification
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+%	THESIS MAIN BODY
+%----------------------------------------------------------------------------------------
+
+\mainmatter % here the regular arabic numbering starts
+\pagestyle{thesis}
+\hypertarget{this-is-the-degree-you-are-aiming-for-with-this-thesis}{%
+\chapter{This is the degree you are aiming for with this thesis}\label{this-is-the-degree-you-are-aiming-for-with-this-thesis}}
+
+Placeholder
+
+\hypertarget{introduction}{%
+\chapter{Introduction}\label{introduction}}
+
+\hypertarget{introduction-1}{%
+\section{Introduction}\label{introduction-1}}
+
+In Recent decades stress as an extensively discussed issue has been noticed in daily life. There have been various scopes of research who investigated the source of stress and possible coping strategies. Psychological, sociological and physiological studies have investigated stress and its consequences in work, society, economy and so on.
+
+In addition to stress-related factors such as workplace and labor market, personal characteristics, environmental and interpersonal factors, commuting play a significant role as a source of stress classified into objective stressors and subjective moderators. The first category called also impedance, includes commuting condition-related factors such as commuting time, distance or speed and the second one refers to the perception and feeling of control over the commute, predictability of the journey's conditions and personal characteristics like gender, income and age (Gottholmseder, Nowotny, Pruckner, \& Theurl, 2009).
+
+According to many recent studies, stress has been focused in travel behavior literature as it has an increasingly significant role on daily routine of commuters. Nowadays commute has become all-pervasive for a large portion of people to meet their targets and correspondingly commuting stress will affect a huge number of people (Legrain et al., 2015).
+
+Understanding the interaction between active and motorized modes of transport and commuting stress is the main goal of this research. Apart from this, the goal of study is also extended to analyze the method that people use to address their stress and deal with the negative feeling while commuting regarding the attached importance of stress by them. The research findings suggest that commuters interested in public modes are the most suffered category while they sometimes have no choice.
+
+This fact can be accordance with research findings as the income of most residents of Santiago can be categorized in low and middle levels. It is also inevitable for people who live in long distance from their workplace leading to use available motorized options such as public ones. The novelty of the research is to simultaneously investigating stress caused by travel, to what extent this importance is tangible based on a bivariate ordinal regression model, also what coping strategies apparently have been used in Santiago, Chile.
+
+\hypertarget{background}{%
+\section{Background}\label{background}}
+
+Although the field of transportation has been dominated by urban planners, engineers and economists, the contribution of psychologists and sociologist have been blended into this arena. As families, individuals and organization were concerned about the hidden costs of traffic congestion, air pollution and noise, (Novaco \& Gonzalez, 2009) in their previous work back in 1981 argued that it can be important to investigate on how to optimize transportation systems and evaluate the impacts of travel constraints.
+
+This study also found that the contribution of psychologist in transportation began in the 1920's when transportation firms and government agencies looked for the improvement in driver selection of public transport vehicles and employed psychometric test to choosing the operators.
+
+(Novaco \& Gonzalez, 2009) also pointed out that the term of ``commuting stress'' has been defined in a very appropriate way in the book by Koslowsky, Kluger, and Reich (1995), who provide an engaging composition of the environmental, psychological, personal health, and organizational factors involved. They offer an elaborate structural model and provide a rich discussion of coping at both the individual, organizational, and governmental levels. One springboard for their view of commuting stress is the impedance concept, which has guided our understanding of the subject and is embedded in broader ecological models .
+
+Over the years commuting stress has been increasingly taken into consideration in research whereas it has been recently proposed to integrate bivariate or multivariate relationship between commuting variables and outcome measures.
+
+According to the model presented by (Koslowsky, 1997) to understanding the relationship among commuting variables, moderators, and outcome variables it is expected to explain the impact of stress on people's travel behavior. As commuting experience may have a highly significant effect on commuters in terms of psychological, physiological and behavioral factors, a comprehensive model would be beneficial to understand the linkages among them and to develop coping strategies based on that. As it has been previously indicated subjective refers to the personal perceptions and cognitive appraisal, while objective stressors primarily refers to the condition of travel such as time and distance between work and home or even speed of travel.
+
+The necessity of including both characteristics in modelling process has been indicated according to a notion explaining the lower error in strain prediction after adding subjective outcomes as both subjective and objective stressors are required to predict their related responses which cannot be covered by only one of them (Koslowsky, 1997).
+
+Moderator as an another components of this model interacts with independent variables to influence an outcome which cannot be predicted by each one of variables lonely. This study covers a number of commuting stressors such as stress while commuting and the assigned importance level to this as a negative experience by commuters and the interaction of them with moderators such as income, age and choice of transportation mode to understand how commuters in Santiago, Chile deal with commuting stress.
+
+In terms of the method for dealing with stress among travelers, concept of normalization as a coping strategies derived from mobility research would be responsive as it is able to moderate both stress and stimulation during a trip. Stress-coping theory splits into problem-focused and emotion-focused strategies. The former one seeks to tackle the problem by doing an act such as taking advantage of radio to be more aware of the conditions of travel and traffic ahead, listening to the music when driving make people anxious or changing the mode of transport to experience less negative effects of travel. While the emotion-based coping strategies concentrate on minimizing the emotional outcomes of the problem through various mental process such as wishful thinking, self-blame and avoidance (Nakano, 1991).
+
+According to the current research's findings, while a group of people experience high levels of stress, they may have no more options to avoid stress and to some extent will continue using the same stressful mode of transport.
+
+The concept of normalization of travel can be observed on three different levels of societal, organization and individual level.
+
+First level happens on the level of society where leisure travel is becoming ubiquitous and more exciting than work-related travels. Previously people couldn't travel as much as nowadays because of financial matters or other issues. But these days traveling has become more prevalent even traveling for work due to economic and political internationalization as well as organizational trend reinforcing the normalization of travel on society level.
+
+Second level of normalization can be seen on organizational level. Travel based on occupational target has been increased and has become like a more normal activity in organizations.
+
+Individual level is the third level of normalization to be appeared on. People's experience of travel extensively varies from one to another as some of them consider it as a routine and normal component of daily life due to the high repetition of the activity such as business travels. Normalization may have multiple and apparently paradoxical consequence. Thanks to the normalization some individuals may experience less stressful travels and learn how to manage travel-related practicalities. The term ``travel competence'' as an appropriate example accounts for the positive side of employing the concept of normalization leading to feel less annoying travel. However it has been indicated that normalization simultaneously may deprive people of experiencing excitement and fade the attraction away.
+
+As Stress and coping strategies have been considered as key determinants of public health and life quality, this scoop of research has become significant in both theoretical an practical implications. Investigating the methods of dealing with stress by people would be advantageous in understanding the mechanism by which coping strategy address the negative impact of stress on health and well-being. Also this knowledge would be useful for development of effective health-related policies and programs to prevent stress-induced illnesses, decrease health service expenses and boost public health (Iwasaki, MacKay, \& Mactavish, 2005).
+
+The study here will focus on analyzing the subjective moderators and commuting stress-related variables regarding the literature. Modelling process based on our outcome and exploratory variables may consider both theoretical and empirical implications beneficial in understanding coping mechanism for expected cluster of commuters (Gustafson, 2014).
+
+\hypertarget{thesis-rationale}{%
+\section{Thesis rationale}\label{thesis-rationale}}
+
+Certainly it is important to understand and identify the variables affecting commuting stress and the relevant coping strategies. For instance, perceived stress during trips would have serious social and public health implications. Accordingly, by investigating the stress across different mode choices, the the strongest contribution of that particular mode to the potential health and social issue can be indicated. In a study conducted by (Legrain et al., 2015) his process is done by using an ordered logistic regression to develop a general model of stress and three mode-specific models.
+
+This study concluded that driving is the most stressful mode of transportation compared to any other options and the stressors vary from one mode to another. The knowledge of specific factors indicating that a certain mode is stressful will help transportation and public health experts make traveling a more safer, exciting and less stressful activity helpful in minimizing potential health outcomes of a stressful commute.
+
+Income also has been indicated as influential variables in identifying the effect of commuting time and accordingly commuting stress on salary satisfaction. (Sha, Li, Law, \& Yip, 2019) found that salary satisfaction is highly significant when it comes to mediation of the association between commuting time and life satisfaction. The knowledge of the interaction between commuting time and subjective well-being is of high importance when formulating policies. As commuting stress has been specified to be generated by prolonged commuting time, satisfaction of salary and consequently life satisfaction may decrease.
+
+In another study (Useche, Marin, \& Llamazares, 2023) identified that age differences coherently is associated with commuting stress as previous literature has pointed out too. Individuals in different age groups vary in terms of cognitive appraisal of commuting stress. They also found that the association between age and commuting stress tends to be negative and younger commuters may remain as the most affected group to address the issue by commuter stress-alleviating actions and interventions.
+
+\hypertarget{chapter-objectives-and-contents}{%
+\section{Chapter Objectives and Contents}\label{chapter-objectives-and-contents}}
+
+This research aims at investigating the perceived commuting stress among active and motorized commuters and the relevant coping strategies. The specific objectives are as follows:
+\begin{itemize}
+\item
+  To develop a data package including various travel behavioral and psychological aspects of commuters daily movements.
+\item
+  To analyzing the interaction between stress-related outcomes and exploratory variables.
+\item
+  To identify coping strategies for a particular group of commuters and specifically how people's attitude differs in terms of demographic characteristics.
+\end{itemize}
+\hypertarget{thesis-content}{%
+\section{Thesis Content}\label{thesis-content}}
+
+The following chapters of thesis are organized as follows:
+
+Chapter 2 contains a comprehensive data package including commuters experiences of living and moving in urban environment such as socio-economic and demographic information, feelings and emotions, various self-assessed health questions and so on. This information gained through a traditionally-conducted survey with a notable number of respondents providing a nice foundation of psychological and demographic information for the subsequent chapter.
+
+Chapter 3 includes an exploratory analysis of perceived stress by motorized and active commuters and the importance of the experienced stress assigned by them. This analysis will be done using a modelling process to identify the relevant exploratory variables. furthermore, this chapter assesses the significant role of coping strategies and tries to understand the method used by people to cope with the stressful commuting.
+
+Chapter 4 concludes the research using a brief overview of the contents accompanied by the thesis contributions. This chapter also discusses the study limitation and potentials for further research in terms of investigating the commuting stress and coping strategies.
+
+\hypertarget{a-dataset-to-study-transportation-residential-context-and-well-being-in-santiago-chile}{%
+\chapter{A dataset to study transportation, residential context, and well-being in Santiago, Chile}\label{a-dataset-to-study-transportation-residential-context-and-well-being-in-santiago-chile}}
+
+Placeholder
+
+\hypertarget{introduction-2}{%
+\section{Introduction}\label{introduction-2}}
+
+\hypertarget{data-collection-method}{%
+\section{Data Collection Method}\label{data-collection-method}}
+
+\hypertarget{data-cleaning-and-preprocessing}{%
+\section{Data Cleaning and Preprocessing}\label{data-cleaning-and-preprocessing}}
+
+\hypertarget{data-documentation}{%
+\section{Data Documentation}\label{data-documentation}}
+
+\hypertarget{data-storage-data-availability-and-version-control}{%
+\section{Data Storage, Data Availability and Version Control}\label{data-storage-data-availability-and-version-control}}
+
+\hypertarget{specifications-table}{%
+\section{Specifications Table}\label{specifications-table}}
+
+\hypertarget{value-of-the-data}{%
+\section{Value of the data}\label{value-of-the-data}}
+
+\hypertarget{data}{%
+\section{Data}\label{data}}
+
+\hypertarget{list-of-tables-in-data-package}{%
+\section{List of tables in data package}\label{list-of-tables-in-data-package}}
+
+\hypertarget{experimental-design-materials-and-methods}{%
+\section{Experimental Design, Materials and Methods}\label{experimental-design-materials-and-methods}}
+
+\hypertarget{is-your-commute-like-a-bad-boss-learned-helplessness-and-normalization-of-stress-in-the-commute-experience-in-santiago}{%
+\chapter{Is your commute like a bad boss? Learned helplessness and normalization of stress in the commute experience in Santiago}\label{is-your-commute-like-a-bad-boss-learned-helplessness-and-normalization-of-stress-in-the-commute-experience-in-santiago}}
+
+Placeholder
+
+\hypertarget{introduction-3}{%
+\section{Introduction}\label{introduction-3}}
+
+\hypertarget{background-1}{%
+\section{Background}\label{background-1}}
+
+\hypertarget{stress-and-transportation}{%
+\subsection{Stress and transportation}\label{stress-and-transportation}}
+
+\hypertarget{coping-with-stress-normalization-and-learned-helplessness}{%
+\subsection{Coping with stress: Normalization and learned helplessness}\label{coping-with-stress-normalization-and-learned-helplessness}}
+
+\hypertarget{stress-and-coping-strategies-in-transportation}{%
+\subsection{Stress and coping strategies in transportation}\label{stress-and-coping-strategies-in-transportation}}
+
+\hypertarget{stress-and-transportation-1}{%
+\subsubsection{Stress and transportation}\label{stress-and-transportation-1}}
+
+\hypertarget{coping-strategies}{%
+\subsubsection{Coping strategies}\label{coping-strategies}}
+
+\hypertarget{materials-and-methods}{%
+\section{Materials and methods}\label{materials-and-methods}}
+
+\hypertarget{data-preparation}{%
+\subsection{Data preparation}\label{data-preparation}}
+
+\hypertarget{variables}{%
+\subsection{Variables}\label{variables}}
+
+\hypertarget{modelling-approach}{%
+\subsection{Modelling approach}\label{modelling-approach}}
+
+\hypertarget{analysis-and-results}{%
+\section{Analysis and results}\label{analysis-and-results}}
+
+\hypertarget{discussion}{%
+\section{Discussion}\label{discussion}}
+
+\hypertarget{conclusion}{%
+\section{Conclusion}\label{conclusion}}
+
+\hypertarget{conclusion-1}{%
+\chapter{Conclusion}\label{conclusion-1}}
+
+Placeholder
+
+\hypertarget{research-contribution}{%
+\section{Research Contribution}\label{research-contribution}}
+
+\hypertarget{providing-a-data-package-based-on-travel-behavior-of-santiaguinos-commuters.}{%
+\subsection{Providing a data package based on travel behavior of Santiaguinos commuters.}\label{providing-a-data-package-based-on-travel-behavior-of-santiaguinos-commuters.}}
+
+\hypertarget{influential-attributes-in-commuting-stress-experiences}{%
+\subsection{Influential attributes in commuting stress experiences}\label{influential-attributes-in-commuting-stress-experiences}}
+
+\hypertarget{potential-coping-strategies}{%
+\subsection{Potential coping strategies}\label{potential-coping-strategies}}
+
+\hypertarget{policy-implications}{%
+\section{Policy Implications}\label{policy-implications}}
+
+\hypertarget{invest-in-public-transport-infrastructure}{%
+\subsection{Invest in Public Transport Infrastructure}\label{invest-in-public-transport-infrastructure}}
+
+\hypertarget{promote-alternative-transportation-modes}{%
+\subsection{Promote Alternative Transportation Modes}\label{promote-alternative-transportation-modes}}
+
+\hypertarget{further-research}{%
+\section{Further Research}\label{further-research}}
+
+\hypertarget{exploring-cross-cultural-impacts-on-travel-patterns-and-commuting-stress}{%
+\subsection{Exploring Cross-Cultural impacts on travel patterns and commuting stress}\label{exploring-cross-cultural-impacts-on-travel-patterns-and-commuting-stress}}
+
+\hypertarget{the-role-of-technology-in-commuting}{%
+\subsection{The Role of Technology in Commuting}\label{the-role-of-technology-in-commuting}}
+
+\hypertarget{impacts-of-environmental-factors-on-commuting-experiences}{%
+\subsection{Impacts of Environmental Factors on Commuting Experiences}\label{impacts-of-environmental-factors-on-commuting-experiences}}
+
+\hypertarget{study-limitations}{%
+\section{Study Limitations}\label{study-limitations}}
+
+\hypertarget{closing-remarks}{%
+\section{Closing remarks}\label{closing-remarks}}
+
+\hypertarget{references}{%
+\chapter*{References}\label{references}}
+\addcontentsline{toc}{chapter}{References}
+
+Placeholder
+
+\hypertarget{refs}{}
+\begin{CSLReferences}{1}{0}
+\leavevmode\vadjust pre{\hypertarget{ref-chatterjee2020commuting}{}}%
+Chatterjee, K., Chng, S., Clark, B., Davis, A., De Vos, J., Ettema, D., \ldots{} Reardon, L. (2020). Commuting and wellbeing: A critical overview of the literature with implications for policy and future research. \emph{Transport Reviews}, \emph{40}(1), 5--34.
+
+\leavevmode\vadjust pre{\hypertarget{ref-gottholmseder2009stress}{}}%
+Gottholmseder, G., Nowotny, K., Pruckner, G. J., \& Theurl, E. (2009). Stress perception and commuting. \emph{Health Economics}, \emph{18}(5), 559--576.
+
+\leavevmode\vadjust pre{\hypertarget{ref-gustafson2014business}{}}%
+Gustafson, P. (2014). Business travel from the traveller's perspective: Stress, stimulation and normalization. \emph{Mobilities}, \emph{9}(1), 63--83.
+
+\leavevmode\vadjust pre{\hypertarget{ref-herrmann2021perception}{}}%
+Herrmann-Lunecke, M. G., Mora, R., \& Vejares, P. (2021). Perception of the built environment and walking in pericentral neighbourhoods in santiago, chile. \emph{Travel Behaviour and Society}, \emph{23}, 192--206.
+
+\leavevmode\vadjust pre{\hypertarget{ref-iwasaki2005gender}{}}%
+Iwasaki, Y., MacKay, K., \& Mactavish, J. (2005). Gender-based analyses of coping with stress among professional managers: Leisure coping and non-leisure coping. \emph{Journal of Leisure Research}, \emph{37}(1), 1--28.
+
+\leavevmode\vadjust pre{\hypertarget{ref-koslowsky1997commuting}{}}%
+Koslowsky, M. (1997). Commuting stress: Problems of definition and variable identification. \emph{Applied Psychology: An International Review}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-koslowsky2013commuting}{}}%
+Koslowsky, M., Kluger, A. N., \& Reich, M. (2013). \emph{Commuting stress: Causes, effects, and methods of coping}. Springer Science \& Business Media.
+
+\leavevmode\vadjust pre{\hypertarget{ref-legrain2015stressed}{}}%
+Legrain, A., Eluru, N., \& El-Geneidy, A. M. (2015). Am stressed, must travel: The relationship between mode choice and commuting stress. \emph{Transportation Research Part F: Traffic Psychology and Behaviour}, \emph{34}, 141--151.
+
+\leavevmode\vadjust pre{\hypertarget{ref-nakano1991role}{}}%
+Nakano, K. (1991). The role of coping strategies on psychological and physical well-being. \emph{Japanese Psychological Research}, \emph{33}(4), 160--167.
+
+\leavevmode\vadjust pre{\hypertarget{ref-novaco2009commuting}{}}%
+Novaco, R. W., \& Gonzalez, O. I. (2009). Commuting and well-being. \emph{Technology and Well-Being}, \emph{3}, 174--4.
+
+\leavevmode\vadjust pre{\hypertarget{ref-sha2019beyond}{}}%
+Sha, F., Li, B., Law, Y. W., \& Yip, P. S. (2019). Beyond the resource drain theory: Salary satisfaction as a mediator between commuting time and subjective well-being. \emph{Journal of Transport \& Health}, \emph{15}, 100631.
+
+\leavevmode\vadjust pre{\hypertarget{ref-tiznado2021public}{}}%
+Tiznado-Aitken, I., Muñoz, J. C., \& Hurtubia, R. (2021). Public transport accessibility accounting for level of service and competition for urban opportunities: An equity analysis for education in santiago de chile. \emph{Journal of Transport Geography}, \emph{90}, 102919.
+
+\leavevmode\vadjust pre{\hypertarget{ref-useche2023another}{}}%
+Useche, S. A., Marin, C., \& Llamazares, F. J. (2023). {``Another (hard) day moving in the city''}: Development and validation of the MCSS, a multimodal commuting stress scale. \emph{Transportation Research Part F: Traffic Psychology and Behaviour}, \emph{95}, 143--159.
+
+\end{CSLReferences}
+\end{document}

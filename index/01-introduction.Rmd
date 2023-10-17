@@ -1,0 +1,83 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+# Introduction
+
+## Introduction
+
+In Recent decades stress as an extensively discussed issue has been noticed in daily life. There have been various scopes of research who investigated the source of stress and possible coping strategies. Psychological, sociological and physiological studies have investigated stress and its consequences in work, society, economy and so on. 
+
+In addition to stress-related factors such as workplace and labor market, personal characteristics, environmental and interpersonal factors, commuting play a significant role as a source of stress classified into objective stressors and subjective moderators. The first category called also impedance, includes commuting condition-related  factors such as commuting time, distance or speed and the second one refers to the perception and feeling of control over the commute, predictability of the journey’s conditions and personal characteristics like gender, income and age [@gottholmseder2009stress].
+
+According to many recent studies, stress has been focused in travel behavior literature as it has an increasingly significant role on daily routine of commuters. Nowadays commute has become all-pervasive for a large portion of people to meet their targets and correspondingly commuting stress will affect a huge number of people [@legrain2015stressed].
+
+Understanding the interaction between active and motorized modes of transport and commuting stress is the main goal of this research. Apart from this, the goal of study is also extended to analyze the method that people use to address their stress and deal with the negative feeling while commuting regarding the attached importance of stress by them. The research findings suggest that commuters interested in public modes are the most suffered category while they sometimes have no choice. 
+
+This fact can be accordance with research findings as the income of most residents of Santiago can be categorized in low and middle levels. It is also inevitable for people who live in long distance from their workplace leading to use available motorized options such as public ones. The novelty of the research is to simultaneously investigating stress caused by travel, to what extent this importance is tangible based on a bivariate ordinal regression model, also what coping strategies apparently have been used in Santiago, Chile.
+
+## Background
+
+Although the field of transportation has been dominated by urban planners, engineers and economists, the contribution of psychologists and sociologist have been blended into this arena. As families, individuals and organization were concerned about the hidden costs of traffic congestion, air pollution and noise, [@novaco2009commuting] in their previous work back in 1981 argued that it can be important to investigate on how to optimize transportation systems and evaluate the impacts of travel constraints.
+
+This study also found that the contribution of psychologist in transportation began in the 1920's when transportation firms and government agencies looked for the improvement in driver selection of public transport vehicles and employed psychometric test to choosing the operators. 
+
+[@novaco2009commuting] also pointed out that the term of "commuting stress" has been defined in a very appropriate way  in the book by Koslowsky, Kluger, and Reich (1995), who provide an engaging composition  of the environmental, psychological, personal health, and organizational factors involved. They offer an elaborate structural model and provide a rich discussion of coping at both the individual, organizational, and governmental levels. One springboard for their view of commuting stress is the impedance concept, which has guided our understanding of the subject and is embedded in broader ecological models . 
+
+Over the years commuting stress has been increasingly taken into consideration in research whereas it has been recently proposed to integrate bivariate or multivariate relationship between commuting variables and outcome measures. 
+
+According to the model presented by [@koslowsky1997commuting] to understanding the relationship among commuting variables, moderators, and outcome variables it is expected to explain the impact of stress on people's travel behavior. As commuting experience may have a highly significant effect on commuters in terms of psychological, physiological and behavioral factors, a comprehensive model would be beneficial to understand the linkages among them and to develop coping strategies based on that. As it has been previously indicated subjective refers to the personal perceptions and cognitive appraisal, while objective stressors primarily refers to the condition of travel such as time and distance between work and home or even speed of travel. 
+
+The necessity of including both characteristics in modelling process has been indicated according to a notion explaining the lower error in strain prediction after adding subjective outcomes as both subjective and objective stressors are required to predict their related responses which cannot be covered by only one of them [@koslowsky1997commuting]. 
+
+Moderator as an another components of this model interacts with independent variables to influence an outcome which cannot be predicted by each one of variables lonely. This study covers a number of commuting stressors such as stress while commuting and the assigned importance level to this as a negative experience by commuters and the interaction of them with moderators such as income, age and choice of transportation mode to understand how commuters in Santiago, Chile deal with commuting stress. 
+
+In terms of the method for dealing with stress among travelers, concept of normalization as a coping strategies derived from mobility research would be responsive as it is able to moderate both stress and stimulation during a trip. Stress-coping theory splits into problem-focused and emotion-focused strategies. The former one seeks to tackle the problem by doing an act such as taking advantage of radio to be more aware of the conditions of travel and traffic ahead, listening to the music when driving make people anxious or changing the mode of transport to experience less negative effects of travel. While the emotion-based coping strategies concentrate on minimizing the emotional outcomes of the problem through various mental process such as wishful thinking, self-blame and avoidance [@nakano1991role]. 
+
+According to the current research's findings, while a group of people experience high levels of stress, they may have no more options to avoid stress and to some extent will continue using the same stressful mode of transport.
+
+The concept of normalization of travel can be observed on three different levels of societal, organization and individual level. 
+
+First level happens on the level of society where leisure travel is becoming ubiquitous and more exciting than work-related travels. Previously people couldn't travel as much as nowadays because of financial matters or other issues. But these days traveling has become more prevalent even traveling for work due to economic and political internationalization as well as organizational trend reinforcing the normalization of travel on society level.
+
+Second level of normalization can be seen on organizational level. Travel based on occupational target has been increased and has become like a more normal activity in organizations. 
+
+Individual level is the third level of normalization to be appeared on. People's experience of travel extensively varies from one to another as some of them consider it as a routine and normal component of daily life due to the high repetition of the activity such as business travels. Normalization may  have multiple and apparently paradoxical consequence. Thanks to the normalization some individuals may experience less stressful travels and learn how to manage travel-related practicalities. The term "travel competence" as an appropriate example accounts for the positive side of employing the concept of normalization leading to feel less annoying travel. However it has been indicated that normalization simultaneously may deprive people of experiencing excitement and fade the attraction away. 
+
+As Stress and coping strategies have been considered as key determinants of public health and life quality, this scoop of research has become significant in both theoretical an practical implications. Investigating the methods of dealing with stress by people would be advantageous in understanding the mechanism by which coping strategy address the negative impact of stress on health and well-being. Also this knowledge would be useful for development of effective health-related policies and programs to prevent stress-induced illnesses, decrease health service expenses and boost public health [@iwasaki2005gender].
+
+The study here will focus on analyzing the subjective moderators and commuting stress-related variables regarding the literature. Modelling process based on our outcome and exploratory variables may  consider both theoretical and empirical implications beneficial in understanding coping mechanism for expected cluster of commuters [@gustafson2014business]. 
+
+## Thesis rationale 
+
+Certainly it is important to understand and identify the variables affecting commuting stress and the relevant coping strategies. For instance, perceived stress during trips would have serious social and public health implications. Accordingly, by investigating the stress across different mode choices, the the strongest contribution of that particular mode to the potential health and social issue can be indicated. In a study conducted by [@legrain2015stressed] his process is done by using an ordered logistic regression to develop a general model of stress and three mode-specific models. 
+
+This study concluded that driving is the most stressful mode of transportation compared to any other options and the stressors vary from one mode to another. The knowledge of specific factors indicating that a certain mode is stressful will help transportation and public health experts make traveling a more safer, exciting and less stressful activity helpful in minimizing potential health outcomes of a stressful commute. 
+
+Income also has been indicated as influential variables in identifying the effect of commuting time and accordingly commuting stress on salary satisfaction. [@sha2019beyond] found that salary satisfaction is highly significant when it comes to mediation of the association between commuting time and life satisfaction. The knowledge of the interaction between commuting time and subjective well-being is of high importance when formulating policies. As commuting stress has been specified to be generated by prolonged commuting time, satisfaction of salary and consequently life satisfaction may decrease. 
+
+In another study [@useche2023another] identified that age differences coherently is associated with commuting stress as previous literature has pointed out too. Individuals in different age groups vary in terms of cognitive appraisal of commuting stress. They also found that the association between age and commuting stress tends to be negative and younger commuters may remain as the most affected group to address the issue by commuter stress-alleviating actions and interventions.
+
+
+
+## Chapter Objectives and Contents
+
+This research aims at investigating the perceived commuting stress among active and motorized commuters and the relevant coping strategies. The specific objectives are as follows: 
+
+- To develop a data package including various travel behavioral and psychological aspects of commuters daily movements.
+
+- To analyzing the interaction between stress-related outcomes and exploratory variables.
+
+
+- To identify coping strategies for a particular group of commuters and specifically how people's attitude differs in terms of demographic characteristics.
+
+## Thesis Content
+
+The following chapters of thesis are organized as follows:
+
+Chapter 2 contains a comprehensive data package including commuters experiences of living and moving in urban environment such as socio-economic and demographic information, feelings and emotions, various self-assessed health questions and so on. This information gained through a traditionally-conducted survey with a notable number of respondents providing a nice foundation of psychological and demographic information for the subsequent chapter. 
+
+Chapter 3 includes an exploratory analysis of perceived stress by motorized and active commuters and the importance of the experienced stress assigned by them. This analysis will be done using a modelling process to identify the relevant exploratory variables. furthermore, this chapter assesses the significant role of coping strategies and tries to understand the method used by people to cope with the stressful commuting. 
+
+Chapter 4 concludes the research using a brief overview of the contents accompanied by the thesis contributions. This chapter also discusses the study limitation and potentials for further research in terms of investigating the commuting stress and coping strategies.

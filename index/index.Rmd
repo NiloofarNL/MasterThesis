@@ -1,0 +1,112 @@
+---
+title: 'Stress and Travel'
+author: 'Niloofar Nalaee'
+#date: 'May 20xx'
+university: 'McMaster University'
+faculty: 'Faculty of Science'
+department: 'School of Earth, Environment and Society'
+subject: 'Geography'
+supervisor: 'Antonio Paez'
+bdegree: 'B.Sc.' # Bachellor's Degree
+mdegree: ''   # Master's Degree (if any)
+# This is the degree you are aiming for with this thesis
+degree: 'M.Sc.'
+
+knit: bookdown::render_book
+site: bookdown::bookdown_site
+
+# Remove the hashtag to specify which version of output you would like.
+# Can only choose one at a time.
+output:
+  thesisdown::thesis_pdf: default 
+  keep_tex: true
+#  thesisdown::thesis_gitbook: default         
+#  thesisdown::thesis_word: default
+#  thesisdown::thesis_epub: default
+
+# If you are creating a PDF you'll need to write your preliminary content 
+# (e.g., abstract, acknowledgements) below or use code similar to line 25-26 
+# for the .RMD files. If you are NOT producing a PDF, delete or silence
+# lines 31-56 in this YAML header.
+lay_abstract: |
+  Nowadays commuting as a daily travel mostly beween work and home is considered as an inevitable part of modern lifestyle. This experience has been indicated to be a source of stress and anxiety as numerous studies have already revealed. Understanding commuting patterns and travel behavior is important for analyzing stress-related issues, consequenses and coping strategies. As [@koslowsky2013commuting] has mentioned, this is also beneficial to have a perception of commuting patterns, mode of transportation, road congestion and so on for commuting network planning from scratch. Using the relevant stress commuting variables such as experienced stress and assigned importance to this stress can help to this end.
+  This research aimed at providing a comprehensive data package of travel behavior and other aspects of the urban commuting experience of respondents in Santiago, Chile. Each components of this data package serves different aspects for future research such as using demographic information in travel demand modeling,  health-related information for improving health, well-being and safety in transportation planning, reasons and planning decisions information for origin-destination modeling, and so on.
+  The research also has been focused on an integrated list of variables choosen from demographic and health information sections of the data package. This list helps to identify how commuters interact with experiencing stress during their travels. This research also contributes to address commuting stress by identifying relevant variables, then figuring out the affected groups and analyzing their coping strategies.
+abstract: |
+
+ Stress as a serious physical and mental health implications of commuting, has hardly been mentioned in schorlarly texts. Although stress issues have a major impact on economy, transportation planning, and demographics because of phyisical, emotional and behavioral consequences of commuting, it is not appropriately discussed yet [@koslowsky2013commuting]. Regarding the fact that almost all commutes can be stressful [@legrain2015stressed], understanding the emotional states of individuals   during their journeys and how they navigate and manage the negative feelings of commuting is of superior importance. As [@herrmann2021perception] mentioned a negligible part of the Latin American, including Chile literature, has been centered around individuals emotions especially stress classified as a background emotion. Similarly, this research also has found out that studies into the travel behaviors and stress experiences of both motorized and active commuters in the global south, particularly in locations like Santiago, Chile, has been surprisingly scarce. This study seeks to bridge this gap in research, aiming to comprehensively grasp the impact of stress on commuters, the importance they attribute to these feelings, and the strategies they adopt to tackle this issue. To this end, a bivariate ordinal model was adopted, allowing for an analysis of stress factors and their interactions with key exploratory variables, including income, age, and choice of transportation mode. Interestingly, the results obtained from the context of Santiago, Chile, a region characterized by a predominance of middle and low-income populations, revealed intriguing patterns. It was evident that those most severely affected by commuting stress were individuals from the low-income groups who heavily relied on public transportation. In contrast with what they were suppposed to do, these individuals appeared to be less concerned about the stress they experienced, despite encountering higher stress levels, primarily due to the limited transportation options available to them [@tiznado2021public].
+ This research makes a two-fold contribution. First, it compiles an extensive array of data including socio-demographics, health metrics, feelings and emotions, built environment, and work commute-related      details, all presented in a comprehensive data package format. Subsequently, the study delves into the health-oriented travel behaviors, identifying the various coping strategies employed by commuters.
+  The implications of these findings extend to the domain of transportation system planning and urban development. By shedding light on the challenges caused by commuting stress and highlighting effective coping mechanisms, this research holds the potential to improve individuals' overall quality of life. This echoes findings from [@chatterjee2020commuting] where it has been indicated that commuting experience can affect subjective wellbeing and individual satisfaction due to various experiences such as stres, mode of transport, unpredictability and so on.
+  Furthermore, the gained insights can inform urban planning initiatives and facilitating commuting experience. Ultimately, the integration of these insights into policies and practices has the capacity to cultivate sustainable and resilient communities, which thrive even when facing the inevitable stresses associated with daily commuting.
+# Specify the location where the bibliography file is found below
+bibliography: bib/thesis.bib
+# Download your specific csl file and refer to it in the line below.
+csl: csl/apa.csl
+lot: true
+lof: true
+---
+
+<!--
+Above is the YAML (YAML Ain't Markup Language) header that includes a lot of 
+metadata used to produce the document.  Be careful with spacing in this header!
+
+If you'd prefer to not include a Dedication, for example, simply delete the section entirely, or silence them (add # before each line). 
+
+If you have other LaTeX packages you would like to include, delete the # before header-includes and list the packages after hyphens on new lines.
+
+If you'd like to include a comment that won't be produced in your resulting file enclose it in a block like this.
+
+If you receive a duplicate label error after knitting, make sure to delete the index.Rmd file and then knit again.
+-->
+
+```{r include_packages, include = FALSE}
+# This chunk ensures that the macdown package is
+# installed and loaded. This macdown package includes
+# the template files for the thesis.
+if(!require(remotes))
+  install.packages("remotes", repos = "http://cran.rstudio.com")
+if(!require(macdown))
+  remotes::install_github("paezha/macdown")
+library(macdown)
+```
+
+<!--
+The acknowledgements, preface, dedication, and abstract are added into the PDF
+version automatically by inputting them in the YAML at the top of this file.
+-->
+
+<!-- The {.unnumbered} option here means that the introduction will be 
+"Chapter 0." You can also use {-} for no numbers on chapters.
+-->
+# Preface
+This thesis includes four chapters that presents the research that I have conducted over my   master’s degree. The main goal of this thesis is to discuss commuting stress and identifying the coping strategies for motorized and active users. The case study for the middle chapters would be Santiago, Chile. This study contains some  overlaps in terms of introduction, case study and some parts of data description as the focus of those chapters are active and motorized commuters in Santiago, Chile. The first chapter of the thesis could be considered as an introduction to give a broader viewpoint of research and its objectives for each of the two subsequent chapters. The last or forth chapter serves as a through conclusion of the research, how the study contributes to other various literature and policy implications as the summary of research findings. 
+  
+As a notice to the reader, my supervisor, Dr. Antonio Páez who provided me with his continuous contribution on research ideas, critical evaluations of manuscripts and editorial reviews. Dr. Beatriz Mella-Lira conducted the survey, contributed to editorial review and let me use the data as a base for my research.
+  
+As main author of the whole research, I performed all of the fundamental research activities including the literature review, data preparation and cleaning, statistical analysis, model interpretation and writing of the all chapters.
+
+<!--
+
+BEGINNING HERE ADD THE DOCUMENTS THAT CONFORM THE MAIN BODY OF THE THESIS
+
+-->
+
+```{r eval=!knitr::is_latex_output(), child=here::here("01-introduction.Rmd")}
+
+```
+
+```{r eval=!knitr::is_latex_output(), child=here::here("02-data-package.Rmd")}
+
+```
+
+```{r eval=!knitr::is_latex_output(), child=here::here("03-modelling.Rmd")}
+
+```
+
+```{r eval=!knitr::is_latex_output(), child=here::here("04-conclusion.Rmd")}
+
+```
+
+```{r eval=!knitr::is_latex_output(), child=here::here("99-references.Rmd")}
+
+```
