@@ -57,6 +57,23 @@ library(gt)
 # install.packages("htmltools", update = TRUE)
 ```
 
+```{r geography of communas for chapter 3}
+
+install.packages("remotes")
+remotes::install_github("paezha/bSantiago", force = TRUE)
+library(bSantiago)
+
+# Get the path to the Excel file within the package's data directory
+file_path <- system.file("data", "SantiagoSurvey2016.xlsx", package = "bSantiago")
+SantiagoSurvey <- readxl::read_excel(file_path)
+
+
+file_path2 <- system.file("data", "San_comuna2", package = "bSantiago")
+
+bSantiago::San_comuna2
+View(San_comuna2)
+```
+
 # Is your commute like a bad boss? Learned helplessness and normalization of stress in the commute experience in Santiago
 
 ## Introduction
