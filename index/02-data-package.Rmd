@@ -13,7 +13,7 @@ output:
 #   }
 ```
 
-```{r geography of communas}
+```{r geography of communas, include = FALSE}
 
 install.packages("remotes")
 remotes::install_github("paezha/bSantiago", force = TRUE)
