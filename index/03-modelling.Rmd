@@ -71,7 +71,9 @@ SantiagoSurvey <- readxl::read_excel(file_path)
 file_path2 <- system.file("data", "San_comuna2", package = "bSantiago")
 
 bSantiago::San_comuna2
-View(San_comuna2)
+
+San_comuna2_df <- st_as_sf(San_comuna2)
+View(San_comuna2_df)
 ```
 
 # Is your commute like a bad boss? Learned helplessness and normalization of stress in the commute experience in Santiago

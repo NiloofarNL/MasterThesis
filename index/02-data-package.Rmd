@@ -28,6 +28,9 @@ file_path2 <- system.file("data", "San_comuna2", package = "bSantiago")
 
 bSantiago::San_comuna2
 View(San_comuna2)
+
+San_comuna2_df <- st_as_sf(San_comuna2)
+View(San_comuna2_df)
 ```
 
 ```{r load-packages for data package, include=FALSE}
