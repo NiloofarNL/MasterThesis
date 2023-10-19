@@ -13,10 +13,10 @@ output:
 #   }
 ```
 
-```{r including geography of communas}
+```{r geography of communas}
 
 install.packages("remotes")
-remotes::install_github("paezha/bSantiago")
+remotes::install_github("paezha/bSantiago", force = TRUE)
 library(bSantiago)
 
 # Get the path to the Excel file within the package's data directory
@@ -24,23 +24,10 @@ file_path <- system.file("data", "SantiagoSurvey2016.xlsx", package = "bSantiago
 SantiagoSurvey <- readxl::read_excel(file_path)
 
 
-file_path2 <- system.file("data", "San_comuna.rda", package = "bSantiago")
-San_comuna <- load_data_from_rda()
+file_path2 <- system.file("data", "San_comuna2", package = "bSantiago")
 
-setwd("C:/Users/nalaeen/Desktop/Master-Research/MSc-Thesis")
-
-
-SantiagoSurvey <- read_excel("SantiagoSurvey2016.xlsx")
-A <- SantiagoSurvey2016
-San_comuna <- A %>%
-  left_join(comunas_1,
-              #select(COMUNA) %>%
-              #st_drop_geometry(),
-            by = c("r0A_COMUNA"="COMUNA"))
-
-write.csv(comunas_1, file = 'C:/Users/nalaeen/Desktop/Master-Research/bSantiago/data-raw/comunas_1/comunas_1.csv')
-comunas_1 <- st_read("C:/Users/nalaeen/Desktop/Master-Research/bSantiago/data-raw/comunas_1/comunas_1Polygon.shp")
-
+bSantiago::San_comuna2
+View(San_comuna2)
 ```
 
 ```{r load-packages for data package, include=FALSE}

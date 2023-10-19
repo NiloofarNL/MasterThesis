@@ -14,11 +14,10 @@ install.packages("htmltools")
 library(htmltools)
 
 
-
-
-
 install.packages("htmltools")
 detach("package:htmltools", unload = TRUE)
+install.packages("remotes")
+remotes::install_github("paezha/bSantiago")
 
 
 ```
@@ -56,24 +55,6 @@ library(gt)
 # 
 # 
 # install.packages("htmltools", update = TRUE)
-```
-
-```{r echo=FALSE, include = FALSE}
-# install.packages("htmltools")
-# remotes::install_github("rstudio/htmltools")
-
-
-```
-```{r echo=FALSE, include = FALSE}
-# install.packages("ggmosaic", dependencies = TRUE, repos = "http://cran.us.r-project.org")
-# library(ggmosaic)
-
-```
-
-
-
-```{r loading communa, echo=FALSE, include = FALSE}
-comunas_1 <- read_sf('C:/Users/nalaeen/Desktop/Master-Research/bSantiago/data-raw/comunas_1')
 ```
 
 # Is your commute like a bad boss? Learned helplessness and normalization of stress in the commute experience in Santiago
@@ -238,16 +219,16 @@ The data collection conducted a quota-sampling method based on the information f
 
 ```{r , echo=FALSE, message=FALSE, warning=FALSE, fig.align='center',  fig.cap="\\label{fig:study boundaries}Santiago the case study"}
 
-comunas_1 <- read_sf('C:/Users/nalaeen/Desktop/Master-Research/bSantiago/data-raw/comunas_1')
+San_comuna2 <- bSantiago::San_comuna2
 
 San_area_plot <- ggplot() +
-  geom_sf(data = comunas_1, color = "darkgray",
+  geom_sf(data = San_comuna2, color = "darkgray",
           aes(fill = COMUNA)) +
   scale_fill_brewer(palette = "Spectral") +  # using color brewer palette
-  geom_sf(data = comunas_1, 
+  geom_sf(data = San_comuna2, 
           color = "black", fill = NA, size = 0.7) +
   annotation_map_tile() +
-  geom_sf(data = comunas_1,
+  geom_sf(data = San_comuna2,
           linewidth = 1,
           fill = NA) +
   annotation_north_arrow(location = "tl", 
@@ -258,7 +239,7 @@ San_area_plot <- ggplot() +
                                                           fill = c("white","dimgrey"))) +
   annotation_scale(bar_cols = c("dimgrey", "white"), 
                    height = unit(0.15, "cm")) + 
-  geom_shadowtext(data = comunas_1,
+  geom_shadowtext(data = San_comuna2,
                   aes(x = COORD_X, y = COORD_Y, label = COMUNA),
                   size = 2.3,
                   nudge_y = 3000,
