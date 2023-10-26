@@ -45,6 +45,7 @@ library(dplyr)
 library(ggplot2)
 library(janitor)
 library(gt)
+library(here)
 # install.packages("devtools")
 # devtools::install_github("haleyjeppson/ggmosaic")
 # remotes::install_github("haleyjeppson/ggmosaic")
@@ -64,16 +65,19 @@ remotes::install_github("paezha/bSantiago", force = TRUE)
 library(bSantiago)
 
 # Get the path to the Excel file within the package's data directory
-file_path <- system.file("data", "SantiagoSurvey2016.xlsx", package = "bSantiago")
-SantiagoSurvey <- readxl::read_excel(file_path)
+# file_path <- system.file("data", "SantiagoSurvey2016.xlsx", package = "bSantiago")
+# SantiagoSurvey <- readxl::read_excel(file_path)
+# 
+# 
+# file_path2 <- system.file("data", "San_comuna2", package = "bSantiago")
+# 
+# bSantiago::San_comuna2
+# 
+# San_comuna2_df <- st_as_sf(San_comuna2)
+# View(San_comuna2_df)
 
-
-file_path2 <- system.file("data", "San_comuna2", package = "bSantiago")
-
-bSantiago::San_comuna2
-
-San_comuna2_df <- st_as_sf(San_comuna2)
-View(San_comuna2_df)
+file_path1 <- system.file("MSc-Thesis", "comunas_1", package = "Masterthesis")
+comunas_1 <- st_read(paste0(here(), "/comunas_1/comunas_1Polygon.shp"))
 ```
 
 # Is your commute like a bad boss? Learned helplessness and normalization of stress in the commute experience in Santiago
@@ -238,16 +242,17 @@ The data collection conducted a quota-sampling method based on the information f
 
 ```{r , echo=FALSE, message=FALSE, warning=FALSE, fig.align='center',  fig.cap="\\label{fig:study boundaries}Santiago the case study"}
 
-San_comuna2 <- bSantiago::San_comuna2
+
+# San_comuna2 <- bSantiago::
 
 San_area_plot <- ggplot() +
-  geom_sf(data = San_comuna2, color = "darkgray",
+  geom_sf(data = comunas_1, color = "darkgray",
           aes(fill = COMUNA)) +
   scale_fill_brewer(palette = "Spectral") +  # using color brewer palette
-  geom_sf(data = San_comuna2, 
+  geom_sf(data = comunas_1, 
           color = "black", fill = NA, size = 0.7) +
   annotation_map_tile() +
-  geom_sf(data = San_comuna2,
+  geom_sf(data = comunas_1,
           linewidth = 1,
           fill = NA) +
   annotation_north_arrow(location = "tl", 
@@ -258,7 +263,7 @@ San_area_plot <- ggplot() +
                                                           fill = c("white","dimgrey"))) +
   annotation_scale(bar_cols = c("dimgrey", "white"), 
                    height = unit(0.15, "cm")) + 
-  geom_shadowtext(data = San_comuna2,
+  geom_shadowtext(data = comunas_1,
                   aes(x = COORD_X, y = COORD_Y, label = COMUNA),
                   size = 2.3,
                   nudge_y = 3000,
