@@ -3,7 +3,7 @@
 #' @return A data frame containing the loaded data.
 #' @export
 load_data_from_rda <- function() {
-  file_path2 <- system.file("data", "San_comuna2", package = "bSantiago")
-  San_comuna2 <- readRDS(file_path2)
-  return(San_comuna2)
+  file_pat <- system.file("data-raw", "SantiagoSurvey2016.xlsx", package = "bSantiago")
+  SantiagoSurvey <- readRDS(file_pat)
+  return(SantiagoSurvey)
 }
