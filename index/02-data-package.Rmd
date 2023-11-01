@@ -71,6 +71,7 @@ data("Santiago_NS")
 data("Santiago_RPD")
 data("Santiago_SI")
 data("Santiago_TW")
+data("comunas_1")
 ```
 
 # A dataset to study transportation, residential context, and well-being in Santiago, Chile

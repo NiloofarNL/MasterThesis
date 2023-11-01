@@ -14,11 +14,10 @@ install.packages("htmltools")
 library(htmltools)
 
 
-
-
-
 install.packages("htmltools")
 detach("package:htmltools", unload = TRUE)
+install.packages("remotes")
+remotes::install_github("paezha/bSantiago")
 
 
 ```
@@ -46,6 +45,8 @@ library(dplyr)
 library(ggplot2)
 library(janitor)
 library(gt)
+library(here)
+library(sjPlot)
 # install.packages("devtools")
 # devtools::install_github("haleyjeppson/ggmosaic")
 # remotes::install_github("haleyjeppson/ggmosaic")
@@ -58,22 +59,26 @@ library(gt)
 # install.packages("htmltools", update = TRUE)
 ```
 
-```{r echo=FALSE, include = FALSE}
-# install.packages("htmltools")
-# remotes::install_github("rstudio/htmltools")
+```{r geography of communas for chapter 3}
 
+install.packages("remotes")
+remotes::install_github("paezha/bSantiago", force = TRUE)
+library(bSantiago)
 
-```
-```{r echo=FALSE, include = FALSE}
-# install.packages("ggmosaic", dependencies = TRUE, repos = "http://cran.us.r-project.org")
-# library(ggmosaic)
+# Get the path to the Excel file within the package's data directory
+# file_path <- system.file("data", "SantiagoSurvey2016.xlsx", package = "bSantiago")
+# SantiagoSurvey <- readxl::read_excel(file_path)
+# 
+# 
+# file_path2 <- system.file("data", "San_comuna2", package = "bSantiago")
+# 
+# bSantiago::San_comuna2
+# 
+# San_comuna2_df <- st_as_sf(San_comuna2)
+# View(San_comuna2_df)
 
-```
-
-
-
-```{r loading communa, echo=FALSE, include = FALSE}
-comunas_1 <- read_sf('C:/Users/nalaeen/Desktop/Master-Research/bSantiago/data-raw/comunas_1')
+# file_path1 <- system.file("MSc-Thesis", "comunas_1", package = "Masterthesis")
+comunas_1 <- st_read(paste0(here(), "/comunas_1/comunas_1Polygon.shp"))
 ```
 
 # Is your commute like a bad boss? Learned helplessness and normalization of stress in the commute experience in Santiago

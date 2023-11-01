@@ -17,6 +17,10 @@ The {#rmd-basics} text after the chapter declaration will allow us to link throu
 --->
 
 ```{r load-packages for data package, include=FALSE}
+
+# install.packages("remotes")
+remotes::install_github("paezha/bSantiago")
+
 library(bSantiago) # A data package with the results of a travel and well-being survey conducted in Santiago in 2016
 library(dplyr) # A Grammar of Data Manipulation
 library(kableExtra)
@@ -27,8 +31,37 @@ library(reshape2)
 library(plyr)
 library(readxl)
 library(tidyr)
+library(tidyverse)
+library(sf)
+library(here)
 
 ```
+
+```{r geography of communas, include = FALSE}
+
+install.packages("remotes")
+remotes::install_github("paezha/bSantiago", force = TRUE)
+library(bSantiago)
+
+
+SantiagoSurvey <- readxl::read_xlsx(paste0(here(), "/data-raw/SantiagoSurvey2016.xlsx"))
+
+
+# Get the path to the Excel file within the package's data directory
+# file_pat<- system.file("data-raw", "SantiagoSurvey2016.xlsx", package = "bSantiago")
+# SantiagoSurvey <- readxl::read_excel(file_pat)
+
+
+# file_path2 <- system.file("data", "San_comuna2", package = "bSantiago")
+# 
+# bSantiago::San_comuna2
+# View(San_comuna2)
+# 
+# San_comuna2_df <- st_as_sf(San_comuna2)
+# View(San_comuna2_df)
+```
+
+
 
 ```{r load-data for data package, include=FALSE}
 data("Santiago_BE")
@@ -40,6 +73,7 @@ data("Santiago_NS")
 data("Santiago_RPD")
 data("Santiago_SI")
 data("Santiago_TW")
+data("comunas_1")
 ```
 
 # A dataset to study transportation, residential context, and well-being in Santiago, Chile
